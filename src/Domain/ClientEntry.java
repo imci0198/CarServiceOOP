@@ -50,4 +50,15 @@ public class ClientEntry {
     public void setLeftService(boolean leftService) {
         this.leftService = leftService;
     }
+
+    @Override
+    public String toString() {
+        return "ClientEntry{" +
+                "idClientEntry=" + idClientEntry +
+                ", standNumber=" + standNumber +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", numberOfDays=" + numberOfDays +
+                ", leftService=" + leftService +
+                '}';
+    }
 }
