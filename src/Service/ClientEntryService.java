@@ -17,5 +17,16 @@ public class ClientEntryService {
         this.repository.create(clientEntry);
     }
 
+    public void exitService(int standNumber, double billedPrice, String report){
+        for(ClientEntry clientEntry: this.repository.read()){
+            if(!clientEntry.isLeftService() && clientEntry.getStandNumber() == standNumber) {
+                clientEntry.setBilledPrice(billedPrice);
+                clientEntry.setLeftService(true);
+                clientEntry.setReport(report);
+                break;
+            }
+        }
+
+    }
     public List<ClientEntry> getAll() { return this.repository.read(); }
 }

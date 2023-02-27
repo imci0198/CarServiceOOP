@@ -18,7 +18,7 @@ public class ClientEntryRepository {
      */
     public void create (ClientEntry clientEntry) throws KeyException {
         if(storage.containsKey(clientEntry.getIdClientEntry())){
-            throw new KeyException("The entry ID already exists");
+            throw new KeyException("ERROR The entry ID already exists!");
         }
         storage.put(clientEntry.getIdClientEntry(), clientEntry);
     }

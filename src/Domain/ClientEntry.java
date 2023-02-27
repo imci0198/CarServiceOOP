@@ -6,6 +6,8 @@ public class ClientEntry {
     private String licensePlate;
     private int numberOfDays;
     private boolean leftService;
+    private double billedPrice;
+    private String report;
 
     public ClientEntry(int idClientEntry, int standNumber, String licensePlate, int numberOfDays) {
         this.idClientEntry = idClientEntry;
@@ -51,6 +53,20 @@ public class ClientEntry {
         this.leftService = leftService;
     }
 
+    public double getBilledPrice() {return billedPrice;}
+
+    public void setBilledPrice(double billedPrice) {
+        this.billedPrice = this.billedPrice;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public void setReport(String report) {
+        this.report = this.report;
+    }
+
     @Override
     public String toString() {
         return "ClientEntry{" +
@@ -59,6 +75,8 @@ public class ClientEntry {
                 ", licensePlate='" + licensePlate + '\'' +
                 ", numberOfDays=" + numberOfDays +
                 ", leftService=" + leftService +
+                ", billedPrice=" + billedPrice+
+                ", report=" + report+
                 '}';
     }
 }
