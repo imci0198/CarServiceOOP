@@ -39,11 +39,12 @@ public class Console {
         int standNumber = in.nextInt();
         System.out.println("Billed Price:");
         double billedPrice = in.nextDouble();
-        System.out.println("Report:");
         in.nextLine();
+        System.out.println("Report:");
         String report = in.nextLine();
 
         this.clientEntryService.exitService(standNumber,billedPrice,report);
+
     }
 
 

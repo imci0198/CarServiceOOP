@@ -11,8 +11,13 @@ public class Main {
         ClientEntryService clientEntryService= new ClientEntryService(clientEntryRepository);
         clientEntryService.addClientEntryService(
                 1,
-                2,
+                1,
                 "adsht",
+                14);
+        clientEntryService.addClientEntryService(
+                2,
+                3,
+                "adsbht",
                 14);
         Console console= new Console(clientEntryService);
         console.runUserInterface();

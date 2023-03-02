@@ -20,8 +20,8 @@ public class ClientEntryService {
     public void exitService(int standNumber, double billedPrice, String report){
         for(ClientEntry clientEntry: this.repository.read()){
             if(!clientEntry.isLeftService() && clientEntry.getStandNumber() == standNumber) {
-                clientEntry.setBilledPrice(billedPrice);
                 clientEntry.setLeftService(true);
+                clientEntry.setBilledPrice(billedPrice);
                 clientEntry.setReport(report);
                 break;
             }
