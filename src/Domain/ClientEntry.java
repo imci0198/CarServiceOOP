@@ -56,7 +56,7 @@ public class ClientEntry {
     public double getBilledPrice() {return billedPrice;}
 
     public void setBilledPrice(double billedPrice) {
-        this.billedPrice = this.billedPrice;
+        this.billedPrice = billedPrice;
     }
 
     public String getReport() {
@@ -64,7 +64,7 @@ public class ClientEntry {
     }
 
     public void setReport(String report) {
-        this.report = this.report;
+        this.report = report;
     }
 
     @Override

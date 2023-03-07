@@ -17,12 +17,13 @@ public class ClientEntryService {
         this.repository.create(clientEntry);
     }
 
-    public void exitService(int standNumber, double billedPrice, String report){
+    public void exitService(int standNumber, double billedPrice, String report) throws KeyException {
         for(ClientEntry clientEntry: this.repository.read()){
             if(!clientEntry.isLeftService() && clientEntry.getStandNumber() == standNumber) {
                 clientEntry.setLeftService(true);
                 clientEntry.setBilledPrice(billedPrice);
                 clientEntry.setReport(report);
+                this.repository.update(clientEntry);
                 break;
             }
         }

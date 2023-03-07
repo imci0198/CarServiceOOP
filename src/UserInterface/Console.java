@@ -43,7 +43,11 @@ public class Console {
         System.out.println("Report:");
         String report = in.nextLine();
 
-        this.clientEntryService.exitService(standNumber,billedPrice,report);
+        try {
+            this.clientEntryService.exitService(standNumber,billedPrice,report);
+        } catch (KeyException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
