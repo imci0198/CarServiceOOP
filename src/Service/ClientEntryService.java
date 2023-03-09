@@ -1,10 +1,14 @@
 package Service;
 
 import Domain.ClientEntry;
+import Domain.PriceForStandViewModel;
 import Repository.ClientEntryRepository;
 
 import java.security.KeyException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ClientEntryService {
     private ClientEntryRepository repository;
@@ -27,7 +31,45 @@ public class ClientEntryService {
                 break;
             }
         }
-
     }
+
+    public List<PriceForStandViewModel> getStandsOrderedByPrice() {
+        Map<Integer, List<Double>> standsWithPrices = new HashMap<>();
+
+        for(ClientEntry clientEntry: this.repository.read()) {
+            if(clientEntry.isLeftService()) {
+
+                int standNumber = clientEntry.getStandNumber();
+                double billedPrice = clientEntry.getBilledPrice();
+
+                if(!standsWithPrices.containsKey(standNumber)){
+                List<Double> pricesList = new ArrayList<>();
+                pricesList.add(billedPrice);
+                standsWithPrices.put(standNumber,pricesList );
+            } else {
+                    standsWithPrices.get(standNumber).add(billedPrice);
+                }
+        }
+        }
+
+        List<PriceForStandViewModel> result = new ArrayList<>();
+        for(int standNumber : standsWithPrices.keySet()) {
+            List<Double> pricesForStand = standsWithPrices.get(standNumber);
+            double pricesForStandSum = 0;
+            for(double price: pricesForStand){
+                pricesForStandSum += price;
+            }
+        PriceForStandViewModel priceForStandViewModel = new PriceForStandViewModel(
+                standNumber,
+                pricesForStandSum/pricesForStand.size()
+        );
+            result.add(priceForStandViewModel);
+        }
+        result.sort((o1, o2) -> {
+        return o1.getAveragePriceForStand() < o2.getAveragePriceForStand() ? 1:-1;
+    });
+        return result;
+    }
+
     public List<ClientEntry> getAll() { return this.repository.read(); }
 }

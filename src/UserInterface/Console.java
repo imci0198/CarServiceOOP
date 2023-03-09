@@ -1,6 +1,7 @@
 package UserInterface;
 
 import Domain.ClientEntry;
+import Domain.PriceForStandViewModel;
 import Service.ClientEntryService;
 
 import java.security.KeyException;
@@ -25,12 +26,20 @@ public class Console {
             } else if ("2".equals(option)) {
                 this.handleExitService();
             } else if ("3".equals(option)) {
-                this.handleShowAll();
+                this.handleShowStands();
             } else if ("4".equals(option)) {
-                //TODO handleShowAllEntries
+                this.handleShowAll();
             } else if ("x".equals(option)) {
                 break;
             }
+        }
+    }
+
+    private void handleShowStands() {
+        for (PriceForStandViewModel priceForStandViewModel : this.clientEntryService.getStandsOrderedByPrice()) {
+            ;
+            System.out.println(priceForStandViewModel.toString());
+
         }
     }
 
