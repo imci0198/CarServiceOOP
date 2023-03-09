@@ -38,7 +38,6 @@ public class ClientEntryService {
 
         for(ClientEntry clientEntry: this.repository.read()) {
             if(clientEntry.isLeftService()) {
-
                 int standNumber = clientEntry.getStandNumber();
                 double billedPrice = clientEntry.getBilledPrice();
 
@@ -66,7 +65,9 @@ public class ClientEntryService {
             result.add(priceForStandViewModel);
         }
         result.sort((o1, o2) -> {
-        return o1.getAveragePriceForStand() < o2.getAveragePriceForStand() ? 1:-1;
+            if(o1.getAveragePriceForStand() < o2.getAveragePriceForStand()) return 1;
+            if(o1.getAveragePriceForStand() == o2.getAveragePriceForStand()) return 0;
+            else return -1;
     });
         return result;
     }
